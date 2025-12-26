@@ -1,4 +1,4 @@
-# @pipelinesolucoes/button
+# @pipelinesolucoes/carrossel
 
 Biblioteca de **componentes de carrossel para React**, desenvolvida para **padronização visual**, **reutilização** e **escalabilidade** em aplicações modernas e design systems.
 
@@ -10,9 +10,12 @@ Este pacote faz parte do ecossistema de componentes da **Pipeline Soluções**.
 
 A biblioteca inclui os seguintes componentes:
 
-- **ActionButton**  
-  Botão de ação estilizado, baseado no tema e com tipografia configurável via `variant`.
-
+- **BookCarousel**  
+- **CardMarquee**  
+- **CarouselCircular**  
+- **Carrossel**  
+- **ImageCarousel**  
+  
 ---
 
 ## ✨ Características
@@ -30,22 +33,28 @@ A biblioteca inclui os seguintes componentes:
 ## 📥 Instalação
 
 ```bash
-npm install @pipelinesolucoes/button 
+npm install @pipelinesolucoes/carrossel 
 ou
-yarn add @pipelinesolucoes/button
+yarn add @pipelinesolucoes/carrossel
 
 ```
 
 ## 🚀 Uso básico
 
 ```
-import { ActionButton } from "@pipelinesolucoes/button";
+import { ImageCarousel } from "@pipelinesolucoes/carrossel";
 
 export function Example() {
   return (
-    <ActionButton variant="contained" color="primary">
-      Ação
-    </ActionButton>
+    <ImageCarousel 
+      width="100%"
+      height="100%"
+      images={[ '/image1.png', '/image2.png', '/image3.png' ]}
+      dotColor="#eeeeee"
+      activeDotColor="blue"
+      autoPlay={true}
+      autoPlayInterval={4000}        
+    />   
   );
 }
 ```
@@ -122,7 +131,7 @@ Este projeto segue Semantic Versioning (SemVer):
 Para listar as versões publicadas:
 
 ```
-npm view @pipelinesolucoes/button versions --json
+npm view @pipelinesolucoes/carrossel versions --json
 ```
 
 ## 🚀 Processo de publicação

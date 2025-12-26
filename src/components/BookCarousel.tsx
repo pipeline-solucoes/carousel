@@ -12,7 +12,7 @@ const TURN_DESKTOP = 1.55;
 const HOLD_MOBILE = 2.2;
 const TURN_MOBILE = 1.75;
 
-export type ScrollFlipBookHeroProps = {
+export type BookCarouselProps = {
   bookScale?: number;
   coverSrc?: string;
 };
@@ -49,10 +49,10 @@ const PageImageBack = styled("img")(() => ({
   padding: "16px",
 }));
 
-export default function ScrollFlipBookHero({
+export default function BookCarousel({
   bookScale = 1,
   coverSrc = "/capa.png",
-}: ScrollFlipBookHeroProps) {
+}: BookCarouselProps) {
   const rootRef = useRef<HTMLDivElement | null>(null);
   const bookRef = useRef<HTMLDivElement | null>(null);
   const [coverReady, setCoverReady] = useState(false);

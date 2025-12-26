@@ -3,11 +3,11 @@
   "version": "1.0.0-beta.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/pipeline-solucoes/button.git"
+    "url": "https://github.com/pipeline-solucoes/carrossel.git"
   },
-  "homepage": "https://github.com/pipeline-solucoes/button#readme",
+  "homepage": "https://github.com/pipeline-solucoes/carrossel#readme",
   "bugs": {
-    "url": "https://github.com/pipeline-solucoes/button/issues"
+    "url": "https://github.com/pipeline-solucoes/carrossel/issues"
   },
   "publishConfig": {
     "access": "public"
@@ -28,9 +28,7 @@
     "build": "tsc",
     "prepare": "npm run build",
     "start": "next start",
-    "lint": "next lint",
-    "release-beta": "npm run build && npm publish --tag beta",
-    "release": "npm run build && npm publish"
+    "lint": "next lint"
   },
    "peerDependencies": {
     "@emotion/react": "^11.14.0",
