@@ -1,13 +1,13 @@
 {
-  "name": "@pipelinesolucoes/carrossel",
+  "name": "@pipelinesolucoes/carousel",
   "version": "1.0.0-beta.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/pipeline-solucoes/carrossel.git"
+    "url": "https://github.com/pipeline-solucoes/carousel.git"
   },
-  "homepage": "https://github.com/pipeline-solucoes/carrossel#readme",
+  "homepage": "https://github.com/pipeline-solucoes/carousel#readme",
   "bugs": {
-    "url": "https://github.com/pipeline-solucoes/carrossel/issues"
+    "url": "https://github.com/pipeline-solucoes/carousel/issues"
   },
   "publishConfig": {
     "access": "public"

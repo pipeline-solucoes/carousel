@@ -1,4 +1,4 @@
-# @pipelinesolucoes/carrossel
+# @pipelinesolucoes/carousel
 
 Biblioteca de **componentes de carrossel para React**, desenvolvida para **padronização visual**, **reutilização** e **escalabilidade** em aplicações modernas e design systems.
 
@@ -33,16 +33,16 @@ A biblioteca inclui os seguintes componentes:
 ## 📥 Instalação
 
 ```bash
-npm install @pipelinesolucoes/carrossel 
+npm install @pipelinesolucoes/carousel 
 ou
-yarn add @pipelinesolucoes/carrossel
+yarn add @pipelinesolucoes/carousel
 
 ```
 
 ## 🚀 Uso básico
 
 ```
-import { ImageCarousel } from "@pipelinesolucoes/carrossel";
+import { ImageCarousel } from "@pipelinesolucoes/carousel";
 
 export function Example() {
   return (
@@ -131,7 +131,7 @@ Este projeto segue Semantic Versioning (SemVer):
 Para listar as versões publicadas:
 
 ```
-npm view @pipelinesolucoes/carrossel versions --json
+npm view @pipelinesolucoes/carousel versions --json
 ```
 
 ## 🚀 Processo de publicação
