@@ -54,8 +54,8 @@ jobs:
 
           if [[ "$TAG_NAME" == *"-beta."* ]]; then
             echo "Publishing as beta dist-tag..."
-            npm publish --access public --tag beta --provenance
+            npm publish --tag beta --provenance
           else
             echo "Publishing as latest dist-tag..."
-            npm publish --access public --provenance
+            npm publish --provenance
           fi

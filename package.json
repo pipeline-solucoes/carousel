@@ -1,6 +1,6 @@
 {
   "name": "@pipelinesolucoes/carousel",
-  "version": "1.0.1",
+  "version": "v2.0.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/pipeline-solucoes/carousel.git"
@@ -10,7 +10,7 @@
     "url": "https://github.com/pipeline-solucoes/carousel/issues"
   },
   "publishConfig": {
-    "access": "public"
+    "access": "restricted"
   },
   "main": "dist/index.js",
   "module": "dist/index.js",
@@ -20,6 +20,7 @@
   ],
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/index.js",
       "require": "./dist/index.js"
     }
