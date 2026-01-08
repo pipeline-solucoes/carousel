@@ -14,15 +14,17 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
 
-      - uses: actions/setup-node@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
         with:
           node-version: 20
           registry-url: "https://registry.npmjs.org"
           cache: "npm"
 
-      - name: Upgrade npm (Trusted Publishing)
+      - name: Upgrade npm
         run: npm i -g npm@^11.5.1
 
       - name: Show versions
@@ -48,14 +50,25 @@ jobs:
             exit 1
           fi
 
+      - name: Abort if version already exists on npm
+        run: |
+          PKG_NAME="$(node -p "require('./package.json').name")"
+          PKG_VERSION="$(node -p "require('./package.json').version")"
+
+          echo "Checking if $PKG_NAME@$PKG_VERSION already exists on npm..."
+          if npm view "$PKG_NAME@$PKG_VERSION" version >/dev/null 2>&1; then
+            echo "❌ $PKG_NAME@$PKG_VERSION já existe no npm. Faça bump de versão."
+            exit 1
+          fi
+
       - name: Publish (latest or beta)
         run: |
           TAG_NAME="${GITHUB_REF_NAME}"
 
           if [[ "$TAG_NAME" == *"-beta."* ]]; then
             echo "Publishing as beta dist-tag..."
-            npm publish --tag beta --provenance
+            npm publish --tag beta --provenance || npm publish --tag beta
           else
             echo "Publishing as latest dist-tag..."
-            npm publish --provenance
+            npm publish --provenance || npm publish
           fi
