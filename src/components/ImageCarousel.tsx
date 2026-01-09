@@ -85,6 +85,133 @@ export interface ImageCarouselProps {
   images: Array<string | ImageCarouselImage>;
 }
 
+/**
+ * ImageCarousel
+ *
+ * Componente de carrossel de imagens com transição por fade (opacidade) e controle por “dots”.
+ * Suporta autoplay opcional com intervalo configurável e aceita a lista de imagens tanto como
+ * URLs (`string`) quanto como objetos contendo `src` e `alt`.
+ *
+ * O componente normaliza a prop `images` internamente para `ImageCarouselImage[]` e utiliza
+ * uma chave derivada dos `src` (`imagesKey`) para detectar troca do conjunto de imagens,
+ * reinicializando o índice ativo e os estados/refs de animação para evitar inconsistências
+ * quando arrays diferentes possuem o mesmo tamanho.
+ *
+ * Funcionalidades principais:
+ * - Renderização de imagens com ajuste por `object-fit: contain`.
+ * - Transição suave entre slides via fade (GSAP).
+ * - Autoplay opcional com intervalo configurável.
+ * - Navegação manual por indicadores (dots).
+ * - Normalização de entrada (`string` → `{ src, alt }`) mantendo compatibilidade de uso.
+ *
+ * Tokens de estilo (ordem de prioridade):
+ * - Não há tokens de Design System/Theme da Pipeline aplicáveis.
+ * - Ordem de prioridade para cores dos indicadores (dots):
+ *   1. Props do componente (`dotColor`, `activeDotColor`)
+ *   2. Fallback interno: não há (as props são obrigatórias)
+ *
+ * Tipografia:
+ * - Não se aplica. O componente não renderiza texto tipográfico (exceto `aria-label` em botões).
+ *
+ * @param {object} props - Propriedades do componente.
+ *
+ * Estilo / Aparência
+ * @param {string} props.width
+ * Largura do carrossel aplicada diretamente no container raiz.
+ * - Aceita qualquer valor CSS válido (ex.: `"100%"`, `"640px"`, `"40rem"`).
+ * - Aplicado via styled prop em `CarouselRoot`.
+ *
+ * @param {string} props.height
+ * Altura do carrossel aplicada diretamente no container raiz.
+ * - Aceita qualquer valor CSS válido (ex.: `"320px"`, `"50vh"`).
+ * - Aplicado via styled prop em `CarouselRoot`.
+ *
+ * @param {string} props.dotColor
+ * Cor do indicador (dot) quando **inativo**.
+ * - Aceita qualquer valor CSS válido (ex.: `"#999"`, `"rgba(0,0,0,.3)"`, `"primary.main"`).
+ * - Aplicado via styled prop em `Dot` para `backgroundColor` quando `isActive=false`.
+ *
+ * @param {string} props.activeDotColor
+ * Cor do indicador (dot) quando **ativo**.
+ * - Aceita qualquer valor CSS válido.
+ * - Aplicado via styled prop em `Dot` para `backgroundColor` quando `isActive=true`.
+ *
+ * @param {boolean} [props.autoPlay=true]
+ * Habilita ou desabilita a troca automática de slides.
+ * - Quando `false`, a navegação ocorre apenas via clique nos dots.
+ *
+ * @param {number} [props.autoPlayInterval=5000]
+ * Intervalo (em milissegundos) entre trocas automáticas de slide quando `autoPlay=true`.
+ * - Usado diretamente no `window.setInterval`.
+ *
+ * @param {Array<string | ImageCarouselImage>} props.images
+ * Lista de imagens do carrossel.
+ * - Aceita:
+ *   - `string`: interpretada como `src` e normalizada para `{ src, alt: "" }`.
+ *   - `ImageCarouselImage`: objeto com `src` e `alt` opcional.
+ * - Quando o conjunto de imagens muda (detecção por `src`), o componente:
+ *   - Reseta `activeIndex` para `0`;
+ *   - Reajusta refs (`slidesRef`) ao novo tamanho;
+ *   - Reinicializa opacidades para manter consistência visual.
+ *
+ * Validação
+ * - Não há validação interna de formato/URL.
+ * - Quando `images` estiver vazio, o componente retorna `null`.
+ * - Recomenda-se garantir `images.length > 0` e `src` válido.
+ *
+ * Eventos
+ * - Não expõe callbacks externos.
+ * - Interação disponível:
+ *   - Clique nos dots altera o slide ativo via estado interno (`setActiveIndex`).
+ *
+ * @example
+ * ```tsx
+ * import React from "react";
+ * import ImageCarousel from "./ImageCarousel";
+ *
+ * export function ExemploImageCarouselSimples() {
+ *   return (
+ *     <ImageCarousel
+ *       width="100%"
+ *       height="320px"
+ *       dotColor="rgba(0,0,0,.25)"
+ *       activeDotColor="rgba(0,0,0,.65)"
+ *       images={[
+ *         "/images/banner-1.jpg",
+ *         "/images/banner-2.jpg",
+ *         "/images/banner-3.jpg",
+ *       ]}
+ *     />
+ *   );
+ * }
+ * ```
+ *
+ * @example
+ * ```tsx
+ * import React from "react";
+ * import ImageCarousel, { ImageCarouselImage } from "./ImageCarousel";
+ *
+ * export function ExemploImageCarouselComAlt() {
+ *   const images: ImageCarouselImage[] = [
+ *     { src: "/images/produto-1.png", alt: "Produto 1" },
+ *     { src: "/images/produto-2.png", alt: "Produto 2" },
+ *     { src: "/images/produto-3.png", alt: "Produto 3" },
+ *   ];
+ *
+ *   return (
+ *     <ImageCarousel
+ *       width="640px"
+ *       height="360px"
+ *       dotColor="#BDBDBD"
+ *       activeDotColor="#424242"
+ *       autoPlay={false}
+ *       images={images}
+ *     />
+ *   );
+ * }
+ * ```
+ */
+
 const ImageCarousel: React.FC<ImageCarouselProps> = ({
   width,
   height,

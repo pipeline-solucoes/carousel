@@ -15,6 +15,86 @@ interface CarouselCircularProps {
   color: string;
 }
 
+/**
+ * CarouselCircular
+ *
+ * Componente de carrossel animado com disposição circular simulada, responsável por exibir
+ * uma sequência de imagens com destaque progressivo no item central e transição automática
+ * em intervalos regulares. O componente utiliza Framer Motion para animações de posição,
+ * escala e opacidade, criando um efeito visual de profundidade.
+ *
+ * Funcionalidades principais:
+ * - Rotação automática dos itens em intervalo fixo.
+ * - Destaque visual do item central (escala e z-index maiores).
+ * - Animação suave de transição horizontal entre os itens.
+ * - Exibição de legenda sincronizada com o item ativo.
+ *
+ * Tokens de estilo (ordem de prioridade):
+ * - Não há integração com tokens de Design System ou Theme da Pipeline.
+ * - Estilos são definidos diretamente via `sx`, propriedades inline e variantes do MUI.
+ *
+ * Tipografia:
+ * - Utiliza o componente `Typography` do Material UI.
+ * - Variante fixa `h5`.
+ * - Ordem de prioridade:
+ *   1. Prop `color`
+ *   2. Fallback padrão do MUI para a variante `h5`
+ *
+ * @param {object} props - Propriedades do componente.
+ *
+ * Estilo / Aparência
+ * @param {DataCarouselCircular[]} props.images
+ * Lista de dados do carrossel.
+ * Cada item deve conter:
+ * - `src`: URL da imagem.
+ * - `caption`: Texto exibido como legenda quando o item estiver ativo.
+ * Observação: o componente assume que o array possui ao menos um item.
+ *
+ * @param {string} props.margin
+ * Valor de margem aplicado ao container principal.
+ * - Aceita qualquer valor CSS válido (ex.: `"16px"`, `"32px auto"`).
+ * - Aplicado diretamente na propriedade `sx.margin`.
+ *
+ * @param {string} props.color
+ * Cor aplicada ao texto da legenda.
+ * - Aceita qualquer valor CSS válido ou cor do tema MUI.
+ * - Aplicado diretamente na prop `color` do `Typography`.
+ *
+ * Validação
+ * - Não há validação interna de props.
+ * - O componente assume que:
+ *   - `images.length > 0`
+ *   - As URLs de imagem são válidas.
+ *
+ * Eventos
+ * - Não expõe eventos ou callbacks externos.
+ * - A rotação é controlada internamente via `setInterval` (`useEffect`).
+ *
+ * @example
+ * ```tsx
+ * import React from "react";
+ * import CarouselCircular from "./CarouselCircular";
+ *
+ * const images = [
+ *   { src: "/images/img-1.jpg", caption: "Primeira imagem" },
+ *   { src: "/images/img-2.jpg", caption: "Segunda imagem" },
+ *   { src: "/images/img-3.jpg", caption: "Terceira imagem" },
+ *   { src: "/images/img-4.jpg", caption: "Quarta imagem" },
+ * ];
+ *
+ * export function ExemploCarouselCircular() {
+ *   return (
+ *     <CarouselCircular
+ *       images={images}
+ *       margin="32px 0"
+ *       color="primary.main"
+ *     />
+ *   );
+ * }
+ * ```
+ */
+
+
 const CarouselCircular: React.FC<CarouselCircularProps> = ({ images, margin, color }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
