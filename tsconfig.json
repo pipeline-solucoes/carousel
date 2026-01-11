@@ -15,16 +15,19 @@
     "jsx": "react-jsx",
     "incremental": true,
     "module": "ESNext",
+    
     "outDir": "./dist",
-    "rootDirs": [
-      "./src"
-    ],
+    "rootDirs": ["./src"],
+
     "declaration": true,
+    "declarationDir": "dist",
+
+    "sourceMap": false,
+    "declarationMap": false,
+
     "moduleResolution": "node",
     "noEmit": false,
     "forceConsistentCasingInFileNames": true,            
-    "declarationDir": "dist",
-    "sourceMap": true,
     "baseUrl": ".",                        
     "emitDeclarationOnly": false,
     "plugins": [

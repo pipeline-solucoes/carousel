@@ -61,14 +61,17 @@ jobs:
             exit 1
           fi
 
-      - name: Publish (latest or beta)
+      - name: Publish (latest or beta) as restricted
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
           TAG_NAME="${GITHUB_REF_NAME}"
 
           if [[ "$TAG_NAME" == *"-beta."* ]]; then
-            echo "Publishing as beta dist-tag..."
-            npm publish --tag beta --provenance || npm publish --tag beta
+            echo "Publishing as beta dist-tag (restricted)..."
+            npm publish --tag beta --access restricted
           else
-            echo "Publishing as latest dist-tag..."
-            npm publish --provenance || npm publish
+            echo "Publishing as latest dist-tag (restricted)..."
+            npm publish --access restricted
           fi
+
