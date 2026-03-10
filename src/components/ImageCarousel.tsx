@@ -6,11 +6,12 @@ import Box from "@mui/material/Box";
 import { gsap } from "gsap";
 
 const CarouselRoot = styled("div", {
-  shouldForwardProp: (prop) => !["width", "height"].includes(prop as string),
-})<{ width: string; height: string }>(({ width, height }) => ({
+  shouldForwardProp: (prop) => !["width", "height", "background"].includes(prop as string),
+})<{ width: string; height: string; background: string }>(({ width, height, background }) => ({
   position: "relative",
   width,
   height,
+  background,
   overflow: "hidden",
   display: "flex",
   flexDirection: "column",
@@ -76,6 +77,7 @@ export interface ImageCarouselImage {
 }
 
 export interface ImageCarouselProps {
+  background: string;
   width: string;
   height: string;
   dotColor: string;
@@ -215,6 +217,7 @@ export interface ImageCarouselProps {
 const ImageCarousel: React.FC<ImageCarouselProps> = ({
   width,
   height,
+  background = 'transparent',
   dotColor,
   activeDotColor,
   autoPlay = true,
@@ -297,7 +300,7 @@ const ImageCarousel: React.FC<ImageCarouselProps> = ({
   if (!normalizedImages.length) return null;
 
   return (
-    <CarouselRoot width={width} height={height}>
+    <CarouselRoot width={width} height={height} background={background}>
       <SlidesWrapper>
         {normalizedImages.map((image, index) => (
           <Slide
