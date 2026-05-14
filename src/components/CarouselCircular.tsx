@@ -12,7 +12,9 @@ interface DataCarouselCircular {
 interface CarouselCircularProps {
   images: DataCarouselCircular[];
   margin: string;
-  color: string;
+  color: string;  
+  width_image?: string;
+  height_image?: string;
 }
 
 /**
@@ -95,7 +97,7 @@ interface CarouselCircularProps {
  */
 
 
-const CarouselCircular: React.FC<CarouselCircularProps> = ({ images, margin, color }) => {
+const CarouselCircular: React.FC<CarouselCircularProps> = ({ images, margin, color, width_image = '200px', height_image = '140px' }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
@@ -172,8 +174,8 @@ const CarouselCircular: React.FC<CarouselCircularProps> = ({ images, margin, col
               src={item.src}
               style={{
                 position: "absolute",
-                width: "200px",
-                height: "140px",
+                width: width_image,
+                height: height_image,
                 borderRadius: "12px",
                 objectFit: "cover",
                 zIndex: getZIndex(pos),
