@@ -36,17 +36,18 @@ const ButtonContainer = styled(motion.div, {
 
 const ButtonStyle = styled('button', {
   shouldForwardProp: (prop) =>
-    !['background_color', 'background_color_hover', 'color', 'color_hover', 'border_radius'].includes(prop as string),
+    !['background_color', 'background_color_hover', 'color', 'color_hover', 'border_radius', 'border'].includes(prop as string),
 })<{
   background_color: string;
   background_color_hover: string;
   color: string;
   color_hover: string;
   border_radius: string;
-}>(({ background_color, background_color_hover, color, color_hover, border_radius }) => ({
+  border: string;
+}>(({ background_color, background_color_hover, color, color_hover, border_radius, border }) => ({
   backgroundColor: background_color,
   color: color,
-  border: 'none',
+  border: border,
   padding: '8px',
   cursor: 'pointer',
   borderRadius: border_radius,
@@ -89,7 +90,8 @@ interface CarrosselProps {
   color_hover_button: string;
   color_dot_active: string;
   border_radius_button: string;
-  gap_button: string;
+  gap_button?: string;
+  border_button?: string;
   texto?: string;
 }
 
@@ -105,6 +107,7 @@ const Carrossel: React.FC<CarrosselProps> = ({
   border_radius_button,
   texto,
   gap_button = '0',
+  border_button = 'None'
 }) => {
   const wrapperRef = useRef<HTMLDivElement | null>(null);
   const [maxOffset, setMaxOffset] = useState(0);
@@ -177,6 +180,7 @@ const Carrossel: React.FC<CarrosselProps> = ({
           color_hover={color_hover_button}
           border_radius={border_radius_button}
           aria-label= "botão mover carrossel para a esquerda" 
+          border = {border_button}
         >
           <ChevronLeft />
         </ButtonStyle>
@@ -189,6 +193,7 @@ const Carrossel: React.FC<CarrosselProps> = ({
           color_hover={color_hover_button}
           border_radius={border_radius_button}
           aria-label= "botão mover carrossel para a direita" 
+          border = {border_button}
         >
           <ChevronRight />
         </ButtonStyle>
