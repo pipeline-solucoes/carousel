@@ -24,6 +24,11 @@ A biblioteca inclui os seguintes componentes:
   Componente de carrossel de imagens com transição por fade (opacidade) e controle por “dots”.
   Suporta autoplay opcional com intervalo configurável e aceita a lista de imagens tanto como
   URLs (`string`) quanto como objetos contendo `src` e `alt`.
+
+- **CarouselAutoPlay**  
+  Componente de carrossel com transição por fade (opacidade) e controle por “dots”.
+  Suporta autoplay opcional com intervalo configurável e aceita uma lista de slides
+  composta por qualquer elemento React (`ReactNode`).
   
 ---
 
