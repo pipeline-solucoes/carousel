@@ -35,13 +35,6 @@ const Slide = styled("div")(() => ({
   justifyContent: "center",
 }));
 
-const SlideImage = styled("img")(() => ({
-  width: "100%",
-  height: "100%",
-  objectFit: "contain",
-  display: "block",
-}));
-
 const DotsWrapper = styled("div")({
   display: "flex",
   justifyContent: "center",
@@ -53,14 +46,15 @@ interface DotProps {
   isActive?: boolean;
   dotColor?: string;
   activeDotColor?: string;
+  tamanho?: number
 }
 
 const Dot = styled("button", {
   shouldForwardProp: (prop) =>
-    !["isActive", "dotColor", "activeDotColor"].includes(prop as string),
-})<DotProps>(({ isActive, dotColor, activeDotColor }) => ({
-  width: 10,
-  height: 10,
+    !["isActive", "dotColor", "activeDotColor", "tamanho"].includes(prop as string),
+})<DotProps>(({ isActive, dotColor, activeDotColor, tamanho = 10}) => ({
+  width: tamanho,
+  height: tamanho,
   borderRadius: "50%",
   border: "none",
   padding: 0,
@@ -77,6 +71,7 @@ export interface CarouselAutoPlayProps {
   width: string;
   height: string;
   dotColor: string;
+  dotTamanho: number;
   activeDotColor: string;
   autoPlay?: boolean;
   autoPlayInterval?: number;
@@ -264,6 +259,7 @@ const CarouselAutoPlay: React.FC<CarouselAutoPlayProps> = ({
   background = "transparent",
   dotColor,
   activeDotColor,
+  dotTamanho = 10,
   autoPlay = true,
   autoPlayInterval = 5000,
   items,
@@ -366,6 +362,7 @@ const CarouselAutoPlay: React.FC<CarouselAutoPlayProps> = ({
             onClick={() => handleDotClick(index)}
             isActive={index === activeIndex}
             dotColor={dotColor}
+            tamanho={dotTamanho}
             activeDotColor={activeDotColor}
             aria-label={`Ir para slide ${index + 1}`}
           />
